@@ -10,7 +10,7 @@
             screen.
           </p>
           <!-- add code to element below -->
-          <div class="player-card text-center">
+          <div class="player-card text-center" v-if="true == true">
             <div>
               <img :src="state.player.photo" />
             </div>
@@ -38,7 +38,8 @@
             toggle the value to true to get it to show up again.
           </p>
           <!-- add code to element below -->
-          <div class="player-card text-center">
+                    <div class="player-card text-center" v-if="state.showPlayer == true">
+
             <div>
               <img :src="state.player.photo" />
             </div>
@@ -67,24 +68,24 @@
             to add another condition.
           </p>
           <!-- v-if comparing grade and 90 -->
-          <div>
+          <div v-if="state.grade >= 90">
             <p>The grade is 'A'.</p>
           </div>
           <!-- v-else-if comparing grade and 80 -->
-          <div>
+          <div v-else-if="state.grade >= 80 && state.grade < 90">
             <p>The grade is 'B'.</p>
           </div>
           <!-- v-else-if comparing grade and 70 -->
-          <div>
-            <p>The grade is 'C'.</p>
+          <div v-else-if="state.grade >= 70 && state.grade < 80">
+            <p>The grade is 'C'. {{state.grade}}</p>
           </div>
           <!-- v-else-if comparing grade and 60 -->
-          <div>
+          <div v-else-if="state.grade >= 60 && state.grade < 70">
             <p>The grade is 'D'.</p>
           </div>
           <!-- v-else to display if all the others fail -->
-          <div>
-            <p>The grade is 'F'.</p>
+          <div v-else>
+            <p>The grade is 'F' .</p>
           </div>
         </div>
         <div class="border p-1">
@@ -129,12 +130,15 @@ export default {
   setup() {
     const state = reactive({
       //add a property to toggle the player-card here.
+        showPlayer: true,
+        grade: 73,
       //add a property to set the number value here.
       player: {
         photo: "https://robohash.org/D$",
         name: "D$",
         position: "WR",
         number: 4,
+        id: 1
       },
     });
     return {
